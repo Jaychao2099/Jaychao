@@ -22,3 +22,5 @@ b = int(input("請輸入進位方法："))
 
 # 呼叫函數並輸出結果
 print(n, "的", b, "進位表示法是：", decimal_to_base(n, b))
+
+#123
