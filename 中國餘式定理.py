@@ -25,10 +25,10 @@ def mul_inv(a, b):
     return x1 + b0 if x1 < 0 else x1
 
 # 測試
-input_numbers_a = [int(x) for x in input("ai ∈ 整數，ni互質\nx ≡ a1 (mod n1)\nx ≡ a2 (mod n2)\n  .\n  .\n  .\nx ≡ ak (mod nk)\n\n請輸入ai數字，以空格分隔：").split()]
-input_numbers_n = [int(x) for x in input("請輸入ni數字，以空格分隔：").split()]
+input_numbers_a = [int(x) for x in input("餘數 a ∈ 整數，模數 n 彼此互質\nx ≡ a1 (mod n1)\nx ≡ a2 (mod n2)\n  .\n  .\n  .\nx ≡ ak (mod nk)\n\n請輸入餘數a，以空格分隔：").split()]
+input_numbers_n = [int(x) for x in input("請輸入模數n，以空格分隔：").split()]
 
 # n = [3, 5, 7]
 # a = [2, 3, 2]
-print("ni相乘 = ", total_product(input_numbers_n))
-print("中國餘式定理的結果：", "x = ", chinese_remainder_theorem(input_numbers_n, input_numbers_a), "+ c *", total_product(input_numbers_n), "，c 可以是任意整數。")
+print("n相乘 = ", total_product(input_numbers_n))
+print("中國餘式定理的結果：", "x = ", chinese_remainder_theorem(input_numbers_n, input_numbers_a), "+ ", total_product(input_numbers_n), "*c", "，c 可以是任意整數。")

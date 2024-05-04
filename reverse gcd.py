@@ -16,6 +16,8 @@ num1 = int(input("請輸入第一個數字："))
 num2 = int(input("請輸入第二個數字："))
 
 # 呼叫gcd函數並輸出結果
-print(extended_euclidean(num1, num2))
+gcd, x, y = extended_euclidean(num1, num2)
+print(f"gcd({num1}, {num2}) = {gcd} = {num1}*{x} + {num2}*{y}")
 
-#123
+# print(extended_euclidean(num1, num2))
+
