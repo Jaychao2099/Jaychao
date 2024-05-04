@@ -17,3 +17,5 @@ num2 = int(input("請輸入第二個數字："))
 
 # 呼叫gcd函數並輸出結果
 print(extended_euclidean(num1, num2))
+
+#123
