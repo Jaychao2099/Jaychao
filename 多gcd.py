@@ -2,8 +2,11 @@ import math
 def gcd_of_multiple_numbers(*args):
     def gcd(a, b, count):
         while b != 0:
+            if b > a:
+                count[0] == count[0]
+            else:
+                count[0] += 1
             a, b = b, a % b
-            count[0] += 1
         return a
 
     if len(args) < 2:
@@ -14,7 +17,7 @@ def gcd_of_multiple_numbers(*args):
     for num in args[1:]:
         result = gcd(result, num, count)
     
-    return result, count[0], math.floor(math.log(args[1], 2))+1
+    return result, count[0], math.floor(math.log(min(args), 2))+1
 
 
 # 測試
