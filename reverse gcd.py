@@ -11,11 +11,11 @@ def extended_euclidean(a, b):
 
 
 
-# 輸入兩個數字
-num1 = int(input("請輸入第一個數字："))
-num2 = int(input("請輸入第二個數字："))
+# ��J��ӼƦr
+num1 = int(input("�п�J�Ĥ@�ӼƦr�G"))
+num2 = int(input("�п�J�ĤG�ӼƦr�G"))
 
-# 呼叫gcd函數並輸出結果
+# �I�sgcd��ƨÿ�X���G
 gcd, x, y = extended_euclidean(num1, num2)
 print(f"gcd({num1}, {num2}) = {gcd} = {num1}*{x} + {num2}*{y}")
 

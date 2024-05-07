@@ -24,11 +24,11 @@ def mul_inv(a, b):
         x0, x1 = x1 - q * x0, x0
     return x1 + b0 if x1 < 0 else x1
 
-# æ¸¬è©¦
-input_numbers_a = [int(x) for x in input("é¤˜æ•¸ a âˆˆ æ•´æ•¸ï¼Œæ¨¡æ•¸ n å½¼æ­¤äº’è³ª\nx â‰¡ a1 (mod n1)\nx â‰¡ a2 (mod n2)\n  .\n  .\n  .\nx â‰¡ ak (mod nk)\n\nè«‹è¼¸å…¥é¤˜æ•¸aï¼Œä»¥ç©ºæ ¼åˆ†éš”ï¼š").split()]
-input_numbers_n = [int(x) for x in input("è«‹è¼¸å…¥æ¨¡æ•¸nï¼Œä»¥ç©ºæ ¼åˆ†éš”ï¼š").split()]
+# ´ú¸Õ
+input_numbers_a = [int(x) for x in input("¾l¼Æ a ? ¾ã¼Æ¡A¼Ò¼Æ n ©¼¦¹¤¬½è\nx ¡Ý a1 (mod n1)\nx ¡Ý a2 (mod n2)\n  .\n  .\n  .\nx ¡Ý ak (mod nk)\n\n½Ð¿é¤J¾l¼Æa¡A¥HªÅ®æ¤À¹j¡G").split()]
+input_numbers_n = [int(x) for x in input("½Ð¿é¤J¼Ò¼Æn¡A¥HªÅ®æ¤À¹j¡G").split()]
 
 # n = [3, 5, 7]
 # a = [2, 3, 2]
-print("nç›¸ä¹˜ = ", total_product(input_numbers_n))
-print("ä¸­åœ‹é¤˜å¼å®šç†çš„çµæžœï¼š", "x = ", chinese_remainder_theorem(input_numbers_n, input_numbers_a), "+ ", total_product(input_numbers_n), "*c", "ï¼Œc å¯ä»¥æ˜¯ä»»æ„æ•´æ•¸ã€‚")
+print("n¬Û­¼ = ", total_product(input_numbers_n))
+print("¤¤°ê¾l¦¡©w²zªºµ²ªG¡G", "x = ", chinese_remainder_theorem(input_numbers_n, input_numbers_a), "+ ", total_product(input_numbers_n), "*c", "¡Ac ¥i¥H¬O¥ô·N¾ã¼Æ¡C")

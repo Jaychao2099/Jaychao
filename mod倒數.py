@@ -24,16 +24,16 @@ def find_x(a, m):
         raise ValueError("Invalid input: gcd(a, m) must be 1 and m must be greater than 1")
     else:
         x_0 = modular_inverse(a, m)
-        return f"x â‰¡ {x_0} + k*{m} (mod {m})"
+        return f"x ¡İ {x_0} + k*{m} (mod {m})"
 
-# è¾“å…¥ a å’Œ m
-a = int(input("è«‹è¼¸å…¥ a: "))
-m = int(input("è«‹è¼¸å…¥ m: "))
+# ?¤J a ©M m
+a = int(input("½Ğ¿é¤J a: "))
+m = int(input("½Ğ¿é¤J m: "))
 
-# æ£€æŸ¥ gcd(a, m) æ˜¯å¦ä¸º 1
+# ?¬d gcd(a, m) ¬O§_? 1
 if gcd(a, m) != 1 or m <= 1:
-    print("ç„¡æ•ˆè¼¸å…¥: gcd(a, m) å¿…é ˆç‚º 1ï¼Œä¸” m å¿…é ˆå¤§æ–¼ 1ã€‚")
+    print("µL®Ä¿é¤J: gcd(a, m) ¥²¶·¬° 1¡A¥B m ¥²¶·¤j©ó 1¡C")
 else:
-    # è®¡ç®— x çš„é€šè§£
+    # ?ºâ x ªº³q¸Ñ
     solution = find_x(a, m)
-    print("x çš„é€šè§£ç‚º:", solution)
+    print("x ªº³q¸Ñ¬°:", solution)

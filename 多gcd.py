@@ -5,13 +5,13 @@ def gcd_of_multiple_numbers(*args):
         return a
 
     if len(args) < 2:
-        return "è‡³å°‘éœ€è¦å…©å€‹æ•¸å­—ä¾†è¨ˆç®—æœ€å¤§å…¬å› æ•¸"
+        return "¦Ü¤Ö»Ý­n¨â­Ó¼Æ¦r¨Ó­pºâ³Ì¤j¤½¦]¼Æ"
 
     result = args[0]
     for num in args[1:]:
         result = gcd(result, num)
     return result
 
-# æ¸¬è©¦
-input_numbers = [int(x) for x in input("è«‹è¼¸å…¥æ•¸å­—ï¼Œä»¥ç©ºæ ¼åˆ†éš”ï¼š").split()]
-print("å¤šå€‹æ•¸çš„æœ€å¤§å…¬å› æ•¸ï¼š", gcd_of_multiple_numbers(*input_numbers))
+# ´ú¸Õ
+input_numbers = [int(x) for x in input("½Ð¿é¤J¼Æ¦r¡A¥HªÅ®æ¤À¹j¡G").split()]
+print("¦h­Ó¼Æªº³Ì¤j¤½¦]¼Æ¡G", gcd_of_multiple_numbers(*input_numbers))
