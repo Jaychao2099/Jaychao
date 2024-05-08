@@ -16,6 +16,7 @@ def power(a, n):
         a *= a
         n //= 2
     return result
+    
 
 ppp = power(num1, num2)
 print(f"{num1}^{num2} = {ppp}")
