@@ -10,7 +10,7 @@ def gcd_of_multiple_numbers(*args):
         return a
 
     if len(args) < 2:
-        return "è‡³å°‘éœ€è¦å…©å€‹æ•¸å­—ä¾†è¨ˆç®—æœ€å¤§å…¬å› æ•¸"
+        return "¦Ü¤Ö»Ý­n¨â­Ó¼Æ¦r¨Ó­pºâ³Ì¤j¤½¦]¼Æ"
     
     result = args[0]
     count = [0]
@@ -20,9 +20,9 @@ def gcd_of_multiple_numbers(*args):
     return result, count[0], math.floor(math.log(min(args), 2))+1
 
 
-# æ¸¬è©¦
-input_numbers = [int(x) for x in input("è«‹è¼¸å…¥æ•¸å­—ï¼Œä»¥ç©ºæ ¼åˆ†éš”ï¼š").split()]
+# ´ú¸Õ
+input_numbers = [int(x) for x in input("½Ð¿é¤J¼Æ¦r¡A¥HªÅ®æ¤À¹j¡G").split()]
 result, recursion_count, floor = gcd_of_multiple_numbers(*input_numbers)
-print("æœ€å¤§å…¬å› æ•¸ï¼š", result)
-print("éžè¿´æ¬¡æ•¸ï¼š", recursion_count)
-print("æ¬¡æ•¸ä¸Šé™ï¼š", floor, "(åƒ…é©ç”¨2å€‹è®Šæ•¸æ™‚ã€‚)")
+print("³Ì¤j¤½¦]¼Æ¡G", result)
+print("»¼°j¦¸¼Æ¡G", recursion_count)
+print("¦¸¼Æ¤W­­¡G", floor, "(¶È¾A¥Î2­ÓÅÜ¼Æ®É¡C)")
