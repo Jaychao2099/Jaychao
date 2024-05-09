@@ -2,25 +2,25 @@ def decimal_to_base(decimal, base):
     if base < 2:
         return "Base must be greater than or equal to 2"
     
-    digits = "0123456789ABCDEF"  # ©w¸q16¶i¦ì¼Æ¦rªº¦r²Å¶°¦X¡A¥i®Ú¾Ú»İ­nÂX®i
+    digits = "0123456789ABCDEF"  # å®šç¾©16é€²ä½æ•¸å­—çš„å­—ç¬¦é›†åˆï¼Œå¯æ ¹æ“šéœ€è¦æ“´å±•
     
     if decimal == 0:
         return "0"
     
     result = ""
     while decimal > 0:
-        remainder = decimal % base      #¨D¾l
+        remainder = decimal % base      #æ±‚é¤˜
         result = digits[remainder] + result     
-        decimal = decimal // base       #¾ã¼Æ°£ªk
+        decimal = decimal // base       #æ•´æ•¸é™¤æ³•
     
     return result
 
 
-# ¿é¤J¨â­Ó¼Æ¦r
-n = int(input("½Ğ¿é¤J±ıÂà´«ªº¢Ì¶i¦ì¼Æ¡G"))
-b = int(input("½Ğ¿é¤J¶i¦ì¤èªk¡G"))
+# è¼¸å…¥å…©å€‹æ•¸å­—
+n = int(input("è«‹è¼¸å…¥æ¬²è½‰æ›çš„åé€²ä½æ•¸ï¼š"))
+b = int(input("è«‹è¼¸å…¥é€²ä½æ–¹æ³•ï¼š"))
 
-# ©I¥s¨ç¼Æ¨Ã¿é¥Xµ²ªG
-print(n, "ªº", b, "¶i¦ìªí¥Üªk¬O¡G", decimal_to_base(n, b))
+# å‘¼å«å‡½æ•¸ä¸¦è¼¸å‡ºçµæœ
+print(n, "çš„", b, "é€²ä½è¡¨ç¤ºæ³•æ˜¯ï¼š", decimal_to_base(n, b))
 
 #123
