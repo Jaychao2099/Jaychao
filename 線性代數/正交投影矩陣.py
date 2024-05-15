@@ -34,7 +34,7 @@ def calculate_expression():
      result = calculate_result(input_matrix)
 
      # 顯示結果
-     result_label.config(text="結果矩陣：\n" + str(result))
+     result_label.config(text="正交投影運算矩陣：\n" + str(result))
 
 def calculate_result(A):
      # 計算A的轉置
