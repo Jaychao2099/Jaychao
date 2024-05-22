@@ -22,14 +22,14 @@ num_f1 = int(input("初始值f(1) = "))
 num_f2 = int(input("初始值f(2) = "))
 
 
-"""
+
 fn = fff(num_x, num_a1, num_a2, num_a3, num_p1, num_p2, num_ex1, num_exp, num_f0, num_f1, num_f2)
 if num_x > 4:
     print(f"...\nf({num_x}) = {fn}")
 else:
     print(f"f({num_x}) = {fn}")
 
-#
+"""
 def fff(x, a1,a2, ex1,exp, f0, f1):
     n = 2
     while n <= x:
