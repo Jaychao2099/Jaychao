@@ -2,7 +2,10 @@ import numpy as np
 import tkinter as tk
 from tkinter import messagebox
 from fractions import Fraction
-from sympy import sqrt, Rational
+from sympy import sympify
+
+# 全局變量來跟踪結果顯示的格式
+display_as_fractions = True
 
 def calculate_expression():
     try:
@@ -25,14 +28,20 @@ def calculate_expression():
         if len(row_values) != cols:
             messagebox.showerror("錯誤", "輸入的 Columns 不符。")
             return
-        input_matrix.append([float(val) for val in row_values])
+        parsed_row = []
+        for val in row_values:
+            try:
+                parsed_val = float(sympify(val))
+                parsed_row.append(parsed_val)
+            except (ValueError, SyntaxError):
+                messagebox.showerror("錯誤", f"無法解析輸入值: {val}")
+                return
+        input_matrix.append(parsed_row)
+    
     input_matrix = np.array(input_matrix)
     
     result = calculate_result(input_matrix)
-
-    result_str = format_result(result)
-
-    result_label.config(text="正交投影運算矩陣：\n" + result_str)
+    display_result(result)
 
 def calculate_result(A):
     AT = np.transpose(A)
@@ -42,7 +51,7 @@ def calculate_result(A):
     result = np.dot(A_times_ATA_inverse, AT)
     return result
 
-def format_result(result):
+def format_result(result, as_fractions):
     formatted = []
     col_widths = [0] * result.shape[1]
     
@@ -53,16 +62,14 @@ def format_result(result):
             if np.isclose(val, int(val)):
                 formatted_val = str(int(val))
             else:
-                frac = Fraction(val).limit_denominator()
-                if np.isclose(float(frac), val):
-                    formatted_val = str(frac)
-                else:
-                    sympy_val = Rational(val).limit_denominator()
-                    sqrt_val = sympy_val**2
-                    if sqrt_val == Rational(val):
-                        formatted_val = f"sqrt({sqrt_val})"
+                if as_fractions:
+                    frac = Fraction(val).limit_denominator()
+                    if np.isclose(float(frac), val):
+                        formatted_val = str(frac)
                     else:
                         formatted_val = f"{val:.4f}"
+                else:
+                    formatted_val = f"{val:.4f}"
             formatted_row.append(formatted_val)
             col_widths[i] = max(col_widths[i], len(formatted_val))
         formatted.append(formatted_row)
@@ -74,6 +81,19 @@ def format_result(result):
         result_str += row_str + "\n"
     
     return result_str.strip()
+
+def display_result(result):
+    global display_as_fractions
+    result_str = format_result(result, display_as_fractions)
+    result_label.config(text="正交投影運算矩陣：\n" + result_str)
+
+def toggle_display_format():
+    global display_as_fractions
+    display_as_fractions = not display_as_fractions
+    current_result = result_label.cget("text").split("：\n")[1]
+    if current_result:
+        current_result = np.array([[float(sympify(cell)) for cell in row.split()] for row in current_result.split('\n')])
+        display_result(current_result)
 
 # 建立主視窗
 root = tk.Tk()
@@ -96,7 +116,10 @@ matrix_text = tk.Text(root, width=40, height=10)
 matrix_text.grid(row=2, column=0, columnspan=4, padx=5, pady=5)
 
 calculate_button = tk.Button(root, text="計算", command=calculate_expression)
-calculate_button.grid(row=3, columnspan=4, pady=10)
+calculate_button.grid(row=3, column=0, columnspan=2, pady=10)
+
+toggle_button = tk.Button(root, text="切換顯示格式", command=toggle_display_format)
+toggle_button.grid(row=3, column=2, columnspan=2, pady=10)
 
 result_label = tk.Label(root, text="")
 result_label.grid(row=4, columnspan=4)
