@@ -1,37 +1,40 @@
 import tkinter as tk
 from tkinter import ttk
 import numpy as np
-from sympy import Matrix, symbols, sqrt, nsimplify, fraction, Rational, Integer, sympify, Abs
+from sympy import Matrix, nsimplify, fraction, Rational, Integer, sympify, Abs
 
 # 顯示模式函數
 def matrix_float(A):
-    return np.array(A, dtype=float)
+    threshold = 1e-15
+    A = np.array(A, dtype=float)
+    A[np.abs(A) < threshold] = 0
+    return A
 
 def matrix_readable(A):
-    syms = symbols('a:z')
     M = Matrix(A)
     formatted = []
+    max_length = max(len(str(elem)) for elem in M)
     for elem in M:
         if elem.is_Integer:
-            formatted.append(str(elem))
+            formatted.append(str(elem).rjust(max_length))
         elif elem.is_Rational:
             numer, denom = fraction(elem)
             if denom == 1:
-                formatted.append(str(numer))
+                formatted.append(str(numer).rjust(max_length))
             else:
-                formatted.append(f"{numer}/{denom}")
+                formatted.append(f"{numer}/{denom}".rjust(max_length))
         else:
             coeff, base, exp = str(nsimplify(elem)).partition('^')
             if exp:
                 if coeff == '1':
-                    formatted.append(f"\sqrt{base}^({exp})")
+                    formatted.append(f"\\sqrt{base}^({exp})".rjust(max_length))
                 else:
-                    formatted.append(f"{coeff}*\sqrt{base}^({exp})")
+                    formatted.append(f"{coeff}\*\\sqrt{base}^({exp})".rjust(max_length))
             else:
-                if Abs(sympify(coeff)) < 1e-15:  # 使用 SymPy 計算絕對值
-                    formatted.append('0')
+                if Abs(sympify(coeff)) < 1e-15:
+                    formatted.append('0'.rjust(max_length))
                 else:
-                    formatted.append(str(coeff))
+                    formatted.append(str(coeff).rjust(max_length))
     return np.array(formatted, dtype=object).reshape(M.shape)
 
 # 特徵分解函數
