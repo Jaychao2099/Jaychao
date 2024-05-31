@@ -4,37 +4,20 @@ import numpy as np
 from sympy import nsimplify, sympify, Abs
 
 # 顯示模式函數
-def matrix_float(M):    #浮點模式
+def matrix_float(M):
     M = np.array(M, dtype=float)
     M[np.abs(M) < 1e-15] = 0
     return M
 
 def matrix_readable(M):
-   formatted = []
-   max_rows, max_columns = np.shape(M)
+    def format_element(x):
+        elem = str(nsimplify(x))
+        return '0' if Abs(sympify(x)) < 1e-15 else elem
 
-   for i, row in enumerate(M[row,:] for row in range(max_rows)):  # row0 row1 row2 ...
-      row_formatted = []
-      for j, elem in enumerate(row):   # elem(0,1) elem(0,2) ... elem(1,1) elem(1,2) ...     
-         coeff, base, exp = str(nsimplify(elem)).partition('^')
-         if Abs(sympify(coeff)) < 1e-15:
-            row_formatted.append('0')
-         else:
-            row_formatted.append(str(coeff))
-      formatted.append(row_formatted)
-
-   formatted = np.asarray(formatted, dtype=object)
-
-   max_lengths = [max(len(str(elem)) for elem in formatted[:,col]) for col in range(max_columns)]
-   
-   formatted_done = []
-   for i, row in enumerate(formatted[rows,:] for rows in range(max_rows)):
-      formatted_space = ['{:>{width}}'.format(elem, width=max_lengths[j]) for j, elem in enumerate(row)]
-      formatted_done.append(formatted_space)
-    
-   formatted_done = np.asarray(formatted_done, dtype=object)
-   
-   return formatted_done
+    formatted = np.vectorize(format_element)(M)
+    max_lengths = [max(len(elem) for elem in formatted[:, col]) for col in range(formatted.shape[1])]
+    formatted_done = np.array([['{:>{}}'.format(elem, max_lengths[j]) for j, elem in enumerate(row)] for row in formatted])
+    return formatted_done
 
 # 特徵分解函數
 def eigen_decomposition(A):
@@ -60,20 +43,17 @@ def calculate():
     A = A.reshape(n, n)
 
     display_mode = display_var.get()
-    if display_mode == "Float":
-        display_func = matrix_float
-    else:
-        display_func = matrix_readable
+    display_func = matrix_float if display_mode == "Float" else matrix_readable
 
     A, P, D = eigen_decomposition(A)
 
     output_matrix.delete("1.0", "end")
     output_matrix.insert("end", "Input Matrix (A):\n")
-    output_matrix.insert("end", str(display_func(A)) + "\n\n")
+    output_matrix.insert("end", np.array2string(display_func(A), separator=' ', formatter={'str_kind': lambda x: x}) + "\n\n")
     output_matrix.insert("end", "Eigenvalues (D):\n")
-    output_matrix.insert("end", str(display_func(D)) + "\n\n")
+    output_matrix.insert("end", np.array2string(display_func(D), separator=' ', formatter={'str_kind': lambda x: x}) + "\n\n")
     output_matrix.insert("end", "Eigenvectors (P):\n")
-    output_matrix.insert("end", str(display_func(P)) + "\n\n")
+    output_matrix.insert("end", np.array2string(display_func(P), separator=' ', formatter={'str_kind': lambda x: x}) + "\n\n")
 
 # 創建GUI
 root = tk.Tk()
