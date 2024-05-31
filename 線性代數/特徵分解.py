@@ -13,10 +13,10 @@ def matrix_readable(M):
    formatted = []
    max_rows, max_columns = np.shape(M)
 
-   for i, row in enumerate(M[row,:] for row in range(max_rows)):  # row0 row1 row2 ...
+   for _, row in enumerate(M[row,:] for row in range(max_rows)):  # row0 row1 row2 ...
       row_formatted = []
-      for j, elem in enumerate(row):   # elem(0,1) elem(0,2) ... elem(1,1) elem(1,2) ...     
-         coeff, base, exp = str(nsimplify(elem)).partition('^')
+      for _, elem in enumerate(row):   # elem(0,1) elem(0,2) ... elem(1,1) elem(1,2) ...     
+         coeff, _, _ = str(nsimplify(elem)).partition('^')
          if Abs(sympify(coeff)) < 1e-15:
             row_formatted.append('0')
          else:
