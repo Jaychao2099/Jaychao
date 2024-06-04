@@ -18,17 +18,21 @@ def transitive_closure(matrix):
             print("---------------------")
         print("---------------------")
         """
-    return reach.tolist()
+    return np.array(reach.tolist(), dtype=int)
 
 # 示例
 matrix = [
-    [1, 0, 0, 1],
-    [0, 1, 1, 0],
-    [0, 0, 1, 0],
-    [0, 0, 1, 1]
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 1, 0, 0],
+    [0, 0, 1, 0, 1, 0, 0],
+    [1, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 1, 0, 1, 0],
+    [0, 0, 1, 0, 0, 1, 0]
 ]
 
+matrix_m = np.array(matrix, dtype=int)
 closure = transitive_closure(matrix)
-print("Transitive closure:")
-for row in closure:
-    print(row)
+add = closure - matrix_m
+
+print(f"\033[3;4mmatrix:\033[0m\n{matrix_m}\n\033[3;4madd:\033[0m\n{add}\n\033[3;4mTransitive closure\033[0m:\n{closure}".replace('1', '\033[34m1\033[0m'))
