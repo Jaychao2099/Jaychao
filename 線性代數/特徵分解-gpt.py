@@ -60,7 +60,7 @@ root = tk.Tk()
 root.title("矩陣特徵分解")
 
 # 輸入矩陣
-input_frame = ttk.LabelFrame(root, text="輸入矩陣")
+input_frame = ttk.LabelFrame(root, text="輸入矩陣 (用空格分開)")
 input_frame.pack(pady=10, padx=10, fill="x")
 
 input_matrix = tk.Text(input_frame, height=5, width=40)
